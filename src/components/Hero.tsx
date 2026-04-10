@@ -1,12 +1,19 @@
 import { Rocket, Sparkles } from 'lucide-react';
+import { useCourseStore } from '../store/useCourseStore';
 
 export default function Hero() {
+  const { setShowModeSelection } = useCourseStore();
+
+  const handleStartLearning = () => {
+    setShowModeSelection(true);
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center bg-pastel-slate relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-pastel-mint rounded-full opacity-60 blur-2xl"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-pastel-coral rounded-full opacity-50 blur-3xl"></div>
-      <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-pastel-blue rounded-full opacity-40 blur-xl"></div>
+      <div className="absolute top-20 left-10 w-32 h-32 bg-pastel-mint rounded-full opacity-60 blur-2xl animate-float"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-pastel-coral rounded-full opacity-50 blur-3xl animate-float-delayed"></div>
+      <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-pastel-blue rounded-full opacity-40 blur-xl animate-float"></div>
 
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -37,7 +44,10 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="btn-primary flex items-center gap-3 text-lg">
+            <button
+              onClick={handleStartLearning}
+              className="btn-primary flex items-center gap-3 text-lg"
+            >
               <Rocket className="w-5 h-5" />
               Mulai Belajar Sekarang
             </button>

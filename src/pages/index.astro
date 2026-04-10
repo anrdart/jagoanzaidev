@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Introduction from '../components/Introduction';
+import GoldenRules from '../components/GoldenRules';
+import Footer from '../components/Footer';
+import ModeSelection from '../components/layout/ModeSelection';
+import LoginChoiceDialog from '../components/layout/LoginChoiceDialog';
+import LevelSelector from '../components/layout/LevelSelector';
+import CardDeck from '../components/course/CardDeck';
+---
+
+<Layout title="Jagoan Zaidev - Belajar Server dari Nol">
+  <main>
+    <Hero />
+    <Introduction />
+    <GoldenRules />
+    <Footer />
+    <ModeSelection client:load />
+    <LoginChoiceDialog client:load />
+    <LevelSelector client:load />
+    <CardDeck client:load />
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: 100vh;
+  }
+</style>
