@@ -1,11 +1,11 @@
 import { Rocket, Sparkles } from 'lucide-react';
-import { useCourseStore } from '../store/useCourseStore';
+import { usePathStore } from '../stores/pathStore';
 
 export default function Hero() {
-  const { setShowModeSelection } = useCourseStore();
+  const { setShowCourse } = usePathStore();
 
   const handleStartLearning = () => {
-    setShowModeSelection(true);
+    setShowCourse(true);
   };
 
   return (
@@ -51,26 +51,26 @@ export default function Hero() {
               <Rocket className="w-5 h-5" />
               Mulai Belajar Sekarang
             </button>
-            <a href="#pengenalan" className="text-text-muted hover:text-accent-blue font-medium transition-colors duration-300">
+            <a href="#pengenalan" className="text-text-muted hover:text-accent-blue font-medium transition-colors duration-200">
               Pelajari dulu ah ↓
             </a>
           </div>
 
           {/* Floating illustration elements */}
           <div className="mt-16 flex justify-center gap-8 flex-wrap">
-            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
               <div className="w-12 h-12 bg-pastel-sage rounded-xl flex items-center justify-center">
                 <span className="text-2xl">🖥️</span>
               </div>
               <span className="font-semibold text-text-primary">Server</span>
             </div>
-            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
               <div className="w-12 h-12 bg-pastel-coral rounded-xl flex items-center justify-center">
                 <span className="text-2xl">🌐</span>
               </div>
               <span className="font-semibold text-text-primary">Domain</span>
             </div>
-            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+            <div className="bg-white rounded-2xl px-6 py-4 shadow-soft flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
               <div className="w-12 h-12 bg-pastel-blue rounded-xl flex items-center justify-center">
                 <span className="text-2xl">🏠</span>
               </div>

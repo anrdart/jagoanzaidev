@@ -18,7 +18,7 @@ export default function ContentCard({
       initial={{ x: 300, opacity: 0, scale: 0.9 }}
       animate={{ x: 0, opacity: 1, scale: 1 }}
       exit={{ x: -300, opacity: 0, scale: 0.9 }}
-      transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+      transition={{ type: 'spring', damping: 30, stiffness: 400 }}
     >
       {/* Icon */}
       {card.icon && (

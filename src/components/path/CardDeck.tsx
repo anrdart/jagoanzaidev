@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { useCourseStore } from '../../store/useCourseStore';
+import { usePathStore } from '../../stores/pathStore';
 import { courseData, type CourseLevel } from '../../content/course-data';
 import ContentCard from './ContentCard';
 import QuizCard from './QuizCard';
@@ -22,7 +22,8 @@ export default function CardDeck() {
     setShowCourse,
     markCardCompleted,
     setCurrentCardIndex,
-  } = useCourseStore();
+    setLevel,
+  } = usePathStore();
 
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
@@ -49,7 +50,12 @@ export default function CardDeck() {
     if (currentCard) {
       markCardCompleted(currentCard.id);
     }
-    nextCard();
+    // If on last card, show quiz instead of going to next card
+    if (isLastCard) {
+      setShowQuiz(true);
+    } else {
+      nextCard();
+    }
   };
 
   const handlePrevious = () => {
@@ -79,12 +85,14 @@ export default function CardDeck() {
   };
 
   const handleNextLevel = () => {
-    setShowResult(false);
-    setShowQuiz(false);
     const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
     const currentIndex = levels.indexOf(currentLevel);
     if (currentIndex < levels.length - 1) {
       const nextLevel = levels[currentIndex + 1];
+      // Reset all states before moving to next level
+      setShowResult(false);
+      setShowQuiz(false);
+      setQuizScore(0);
       setCurrentCardIndex(0);
       setLevel(nextLevel);
     }
@@ -103,8 +111,14 @@ export default function CardDeck() {
   };
 
   return (
-    <div className="min-h-screen bg-pastel-cream py-8 px-4">
-      <div className="max-w-3xl mx-auto">
+    <motion.div
+      className="fixed inset-0 bg-pastel-cream z-50 overflow-y-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="min-h-screen py-8 px-4">
+        <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -127,7 +141,7 @@ export default function CardDeck() {
         </div>
 
         {/* Card Stack */}
-        <div className="relative min-h-[400px]">
+        <div className="relative min-h-[500px]">
           <AnimatePresence mode="wait">
             {!showQuiz && !showResult && (
               <ContentCard
@@ -139,12 +153,14 @@ export default function CardDeck() {
             )}
 
             {showQuiz && !showResult && (
-              <QuizCard
-                key="quiz"
-                questions={module.quiz}
-                level={currentLevel}
-                onComplete={handleQuizComplete}
-              />
+              <div className="flex justify-center">
+                <QuizCard
+                  key="quiz"
+                  questions={module.quiz}
+                  level={currentLevel}
+                  onComplete={handleQuizComplete}
+                />
+              </div>
             )}
           </AnimatePresence>
         </div>
@@ -205,7 +221,7 @@ export default function CardDeck() {
             className="text-center mt-4 text-text-muted text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 0.3 }}
           >
             <span className="inline-flex items-center gap-2">
               ◀ Swipe untuk navigasi ▶
@@ -214,5 +230,6 @@ export default function CardDeck() {
         )}
       </div>
     </div>
+    </motion.div>
   );
 }

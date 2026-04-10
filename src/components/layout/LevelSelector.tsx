@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useCourseStore } from '../../store/useCourseStore';
+import { usePathStore } from '../../stores/pathStore';
 import { courseData, type CourseLevel } from '../../content/course-data';
 import LockBadge from '../ui/LockBadge';
-import { CheckCircle2, Lock as LockIcon } from 'lucide-react';
+import { CheckCircle2, Lock as LockIcon, X, Home } from 'lucide-react';
 
 export default function LevelSelector() {
-  const { currentLevel, unlockedLevels, quizScores, setLevel } = useCourseStore();
+  const { currentLevel, unlockedLevels, quizScores, setLevel, setShowCourse } = usePathStore();
 
   const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
 
@@ -15,8 +15,26 @@ export default function LevelSelector() {
     jagoan: { emoji: '👑', color: 'accent-coral' },
   };
 
+  const handleGoHome = () => {
+    setShowCourse(false);
+  };
+
   return (
-    <div className="min-h-screen bg-pastel-cream py-16 px-6">
+    <motion.div
+      className="fixed inset-0 bg-pastel-cream z-40 overflow-y-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Close Button */}
+      <button
+        onClick={handleGoHome}
+        className="fixed top-6 right-6 z-50 w-12 h-12 bg-white rounded-full shadow-soft flex items-center justify-center hover:shadow-lift hover:-translate-y-1 transition-all"
+      >
+        <X className="w-6 h-6 text-text-secondary" />
+      </button>
+
+      <div className="min-h-screen py-24 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
@@ -47,12 +65,12 @@ export default function LevelSelector() {
                 className={`
                   relative bg-white rounded-3xl shadow-soft p-8
                   ${isUnlocked ? 'hover:shadow-lift hover:-translate-y-2 cursor-pointer' : ''}
-                  transition-all duration-300
+                  transition-all duration-200
                 `}
                 onClick={() => isUnlocked && setLevel(level)}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
                 whileHover={isUnlocked ? { scale: 1.02 } : {}}
                 whileTap={isUnlocked ? { scale: 0.98 } : {}}
               >
@@ -133,16 +151,17 @@ export default function LevelSelector() {
           className="text-center mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.2 }}
         >
           <button
-            onClick={() => window.history.back()}
+            onClick={handleGoHome}
             className="text-text-muted hover:text-accent-blue font-medium transition-colors"
           >
-            ← Kembali
+            ← Kembali ke Beranda
           </button>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
