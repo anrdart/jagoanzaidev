@@ -1,13 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathStore } from '../../stores/pathStore';
-import { courseData, type CourseLevel } from '../../content/course-data';
+import { courseData, COURSE_LEVELS, type CourseLevel } from '../../content/course-data';
 import LockBadge from '../ui/LockBadge';
-import { CheckCircle2, Lock as LockIcon, X, Home } from 'lucide-react';
+import { CheckCircle2, Lock as LockIcon, X } from 'lucide-react';
 
 export default function LevelSelector() {
   const { currentLevel, unlockedLevels, quizScores, setLevel, setShowCourse } = usePathStore();
-
-  const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
 
   const levelInfo: Record<CourseLevel, { emoji: string; color: string }> = {
     basic: { emoji: '⭐', color: 'accent-blue' },
@@ -52,7 +50,7 @@ export default function LevelSelector() {
 
         {/* Level Cards */}
         <div className="grid md:grid-cols-3 gap-6">
-          {levels.map((level, index) => {
+          {COURSE_LEVELS.map((level, index) => {
             const isUnlocked = unlockedLevels.includes(level);
             const score = quizScores[level];
             const isCompleted = score !== undefined && score >= 70;
@@ -79,7 +77,7 @@ export default function LevelSelector() {
                   {!isUnlocked && (
                     <LockBadge
                       isLocked={true}
-                      reason={`Selesaikan ${levels[index - 1]} dulu`}
+                      reason={`Selesaikan ${COURSE_LEVELS[index - 1]} dulu`}
                     />
                   )}
                 </AnimatePresence>

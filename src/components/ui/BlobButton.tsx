@@ -25,10 +25,10 @@ export default function BlobButton({
   };
 
   const variantClasses = {
-    primary: 'bg-accent-blue text-white hover:bg-accent-blue/90',
-    secondary: 'bg-white text-accent-blue hover:bg-pastel-blue',
-    accent: 'bg-accent-coral text-white hover:bg-accent-coral/90',
-    sage: 'bg-accent-sage text-white hover:bg-accent-sage/90',
+    primary: 'bg-accent-blue text-white hover:bg-accent-blue/90 border-2 border-transparent',
+    secondary: 'bg-white text-accent-blue border-2 border-accent-blue/20 hover:border-accent-blue hover:shadow-soft',
+    accent: 'bg-accent-coral text-white hover:bg-accent-coral/90 border-2 border-transparent',
+    sage: 'bg-accent-sage text-white hover:bg-accent-sage/90 border-2 border-transparent',
   };
 
   return (
@@ -39,13 +39,14 @@ export default function BlobButton({
         ${sizeClasses[size]}
         ${variantClasses[variant]}
         font-heading font-bold rounded-3xl shadow-soft
-        transition-colors duration-300
+        inline-flex items-center justify-center gap-2
+        transition-all duration-200
         disabled:opacity-50 disabled:cursor-not-allowed
         ${className}
       `}
       whileHover={{ scale: 1.05, y: -4 }}
       whileTap={{ scale: 0.95 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      transition={{ type: 'spring', stiffness: 600, damping: 25 }}
     >
       {children}
     </motion.button>

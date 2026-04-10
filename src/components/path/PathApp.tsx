@@ -1,5 +1,5 @@
 import { usePathStore } from '../../stores/pathStore';
-import LevelSelector from '../layout/LevelSelector';
+import LevelSelector from './LevelSelector';
 import CardDeck from './CardDeck';
 import { AnimatePresence } from 'framer-motion';
 

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { usePathStore } from '../../stores/pathStore';
-import { courseData, type CourseLevel } from '../../content/course-data';
+import { courseData, COURSE_LEVELS, type CourseLevel } from '../../content/course-data';
 import ContentCard from './ContentCard';
 import QuizCard from './QuizCard';
 import QuizResult from '../layout/QuizResult';
@@ -68,10 +68,9 @@ export default function CardDeck() {
     setShowResult(true);
 
     if (score >= module.unlockThreshold) {
-      const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
-      const currentIndex = levels.indexOf(currentLevel);
-      if (currentIndex < levels.length - 1) {
-        unlockLevel(levels[currentIndex + 1]);
+      const currentIndex = COURSE_LEVELS.indexOf(currentLevel);
+      if (currentIndex < COURSE_LEVELS.length - 1) {
+        unlockLevel(COURSE_LEVELS[currentIndex + 1]);
       }
     }
   };
@@ -85,10 +84,9 @@ export default function CardDeck() {
   };
 
   const handleNextLevel = () => {
-    const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
-    const currentIndex = levels.indexOf(currentLevel);
-    if (currentIndex < levels.length - 1) {
-      const nextLevel = levels[currentIndex + 1];
+    const currentIndex = COURSE_LEVELS.indexOf(currentLevel);
+    if (currentIndex < COURSE_LEVELS.length - 1) {
+      const nextLevel = COURSE_LEVELS[currentIndex + 1];
       // Reset all states before moving to next level
       setShowResult(false);
       setShowQuiz(false);

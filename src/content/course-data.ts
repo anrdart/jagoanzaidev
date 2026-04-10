@@ -1,6 +1,8 @@
 export type LearningMode = 'curated' | 'path' | 'story';
 export type CourseLevel = 'basic' | 'fundamental' | 'jagoan';
 
+export const COURSE_LEVELS: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
+
 export interface QuizQuestion {
   id: string;
   question: string;

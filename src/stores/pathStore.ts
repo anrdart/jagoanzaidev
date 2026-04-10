@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { CourseLevel } from '../content/course-data';
-import { courseData } from '../content/course-data';
+import { courseData, COURSE_LEVELS } from '../content/course-data';
 
 interface PathState {
   // Navigation
@@ -44,9 +44,8 @@ export const usePathStore = create<PathState>()(
       // Actions
       setLevel: (level) => {
         const state = get();
-        const levels: CourseLevel[] = ['basic', 'fundamental', 'jagoan'];
-        const currentIndex = levels.indexOf(state.currentLevel!);
-        const nextIndex = levels.indexOf(level);
+        const currentIndex = COURSE_LEVELS.indexOf(state.currentLevel ?? 'basic');
+        const nextIndex = COURSE_LEVELS.indexOf(level);
 
         // Allow moving to the next level if it's directly after the current one
         const isNextLevel = nextIndex === currentIndex + 1;

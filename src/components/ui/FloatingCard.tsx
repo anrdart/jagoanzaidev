@@ -20,7 +20,7 @@ export default function FloatingCard({
       className={`
         bg-white rounded-3xl shadow-soft p-8
         hover:shadow-lift hover:-translate-y-2
-        transition-all duration-300 cursor-pointer
+        transition-all duration-200 cursor-pointer
         ${className}
       `}
       initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -28,8 +28,8 @@ export default function FloatingCard({
       transition={{
         delay,
         type: 'spring',
-        stiffness: 200,
-        damping: 20,
+        stiffness: 400,
+        damping: 25,
       }}
       whileHover={{ scale: 1.02 }}
     >

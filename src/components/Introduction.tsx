@@ -22,7 +22,7 @@ export default function Introduction() {
               {/* Icon/Illustration */}
               <div className="flex-shrink-0">
                 <div className="w-32 h-32 bg-pastel-sage rounded-3xl flex items-center justify-center shadow-soft">
-                  <Server className="w-16 h-16 text-accent-sage" strokeWidth={1.5} />
+                  <Server className="w-16 h-16 text-text-primary" strokeWidth={1.5} />
                 </div>
               </div>
 
@@ -43,7 +43,7 @@ export default function Introduction() {
             <div className="mt-8 pt-8 border-t border-pastel-slate">
               <div className="bg-pastel-blue rounded-2xl p-6">
                 <p className="text-text-secondary text-lg">
-                  <span className="font-bold text-accent-blue">Fun fact:</span> Setiap kali kamu buka website,
+                  <span className="font-bold text-text-primary">Fun fact:</span> Setiap kali kamu buka website,
                   sebenarnya kamu lagi "nengok" ke server yang menyimpan website tersebut. Keren kan?
                 </p>
               </div>

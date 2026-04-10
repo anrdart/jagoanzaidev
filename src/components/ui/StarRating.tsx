@@ -26,7 +26,7 @@ export default function StarRating({
   const hasHalfStar = score % 1 >= 0.5;
 
   return (
-    <div className={`flex gap-1 ${className}`}>
+    <div className={`flex items-center justify-center gap-1 ${className}`}>
       {Array.from({ length: maxStars }).map((_, i) => {
         const isFilled = i < filledStars;
         const isHalf = !isFilled && i === filledStars && hasHalfStar;
@@ -34,9 +34,9 @@ export default function StarRating({
         return (
           <motion.div
             key={i}
-            initial={animate ? { scale: 0, rotate: -180 } : false}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: animate ? i * 0.1 : 0, type: 'spring' }}
+            initial={animate ? { scale: 0 } : false}
+            animate={{ scale: 1 }}
+            transition={{ delay: animate ? i * 0.08 : 0, type: 'spring', stiffness: 400 }}
           >
             <Star
               className={`${sizeClasses[size]} ${

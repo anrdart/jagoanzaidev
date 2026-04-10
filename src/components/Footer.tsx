@@ -39,21 +39,21 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-200 hover:-translate-y-1"
                 aria-label="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-200 hover:-translate-y-1"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-200 hover:-translate-y-1"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -65,7 +65,7 @@ export default function Footer() {
           <div className="text-center mt-10">
             <a
               href="#"
-              className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors duration-300"
+              className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors duration-200"
             >
               <span>Kembali ke atas</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

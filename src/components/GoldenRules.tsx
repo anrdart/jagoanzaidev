@@ -26,7 +26,7 @@ export default function GoldenRules() {
               {/* Timeline connector */}
               <div className="absolute left-8 md:left-1/2 top-24 w-0.5 h-full bg-pastel-slate -translate-x-1/2 hidden md:block"></div>
 
-              <div className="bg-white rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-white rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-200 hover:-translate-y-1">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* Rule Number Badge */}
                   <div className="flex-shrink-0">
@@ -82,7 +82,7 @@ export default function GoldenRules() {
             <div className="relative">
               <div className="absolute left-8 md:left-1/2 top-24 w-0.5 h-full bg-pastel-slate -translate-x-1/2 hidden md:block"></div>
 
-              <div className="bg-white rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-white rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-200 hover:-translate-y-1">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* Rule Number Badge */}
                   <div className="flex-shrink-0">
@@ -140,7 +140,7 @@ export default function GoldenRules() {
 
             {/* Rule 3 */}
             <div className="relative">
-              <div className="bg-pastel-coral/20 rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-300 hover:-translate-y-1 border-2 border-pastel-coral/30">
+              <div className="bg-pastel-coral/20 rounded-3xl shadow-soft p-8 md:p-12 hover:shadow-lift transition-all duration-200 hover:-translate-y-1 border-2 border-pastel-coral/30">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   {/* Rule Number Badge */}
                   <div className="flex-shrink-0">
