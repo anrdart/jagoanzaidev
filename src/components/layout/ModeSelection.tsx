@@ -9,6 +9,16 @@ export default function ModeSelection() {
 
   const handleSelectMode = (mode: LearningMode) => {
     setMode(mode);
+    setShowModeSelection(false);
+
+    // Navigate to the appropriate route
+    if (mode === 'path') {
+      window.location.href = '/path';
+    } else if (mode === 'curated') {
+      window.location.href = '/curated';
+    } else if (mode === 'story') {
+      window.location.href = '/story';
+    }
   };
 
   const handleClose = () => {
@@ -38,7 +48,7 @@ export default function ModeSelection() {
           className="text-center mb-12"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1 }}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-text-primary mb-4">
             Pilih Mode Belajarmu
@@ -54,14 +64,14 @@ export default function ModeSelection() {
             return (
               <motion.div
                 key={mode}
-                className="bg-white rounded-3xl shadow-soft p-8 hover:shadow-lift hover:-translate-y-2 transition-all duration-300 cursor-pointer"
+                className="bg-white rounded-3xl shadow-soft p-8 hover:shadow-lift hover:-translate-y-2 transition-all duration-200 cursor-pointer"
                 onClick={() => handleSelectMode(mode)}
                 initial={{ opacity: 0, scale: 0.8, y: 100 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{
-                  delay: 0.3 + index * 0.15,
+                  delay: 0.1 + index * 0.08,
                   type: 'spring',
-                  stiffness: 200,
+                  stiffness: 400,
                 }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

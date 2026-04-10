@@ -1,20 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { useMemo } from 'astro';
 import Hero from '../components/Hero';
 import Introduction from '../components/Introduction';
 import GoldenRules from '../components/GoldenRules';
 import Footer from '../components/Footer';
-import App from '../components/App';
+import ModeSelection from '../components/layout/ModeSelection';
+import LoginChoiceDialog from '../components/layout/LoginChoiceDialog';
+
 ---
 
 <Layout title="Jagoan Zaidev - Belajar Server dari Nol">
   <main>
-    <Hero />
+    <Hero client:load />
     <Introduction />
     <GoldenRules />
     <Footer />
-    <App client:load />
+    <ModeSelection client:load />
+    <LoginChoiceDialog client:load />
   </main>
 </Layout>
 
