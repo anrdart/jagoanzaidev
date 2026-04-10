@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { LearningMode, CourseLevel } from '../content/course-data';
+import { courseData } from '../content/course-data';
 
 interface CourseState {
   // Navigation
@@ -73,7 +74,6 @@ export const useCourseStore = create<CourseState>()(
         const { currentLevel } = state;
         if (!currentLevel) return;
 
-        const { courseData } = require('../content/course-data');
         const totalCards = courseData[currentLevel].cards.length;
 
         if (state.currentCardIndex < totalCards - 1) {
