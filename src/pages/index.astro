@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { useMemo } from 'astro';
 import Hero from '../components/Hero';
 import Introduction from '../components/Introduction';
 import GoldenRules from '../components/GoldenRules';
 import Footer from '../components/Footer';
-import ModeSelection from '../components/layout/ModeSelection';
-import LoginChoiceDialog from '../components/layout/LoginChoiceDialog';
-import LevelSelector from '../components/layout/LevelSelector';
-import CardDeck from '../components/course/CardDeck';
+import App from '../components/App';
 ---
 
 <Layout title="Jagoan Zaidev - Belajar Server dari Nol">
@@ -16,10 +14,7 @@ import CardDeck from '../components/course/CardDeck';
     <Introduction />
     <GoldenRules />
     <Footer />
-    <ModeSelection client:load />
-    <LoginChoiceDialog client:load />
-    <LevelSelector client:load />
-    <CardDeck client:load />
+    <App client:load />
   </main>
 </Layout>
 
