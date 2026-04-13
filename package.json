@@ -6,11 +6,14 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
+    "@astrojs/cloudflare": "12",
     "@astrojs/react": "^4.0.0",
     "@astrojs/tailwind": "^6.0.0",
     "@neondatabase/auth": "^0.2.0-beta.1",
@@ -28,6 +31,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "drizzle-kit": "^0.31.10",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.82.0"
   }
 }
