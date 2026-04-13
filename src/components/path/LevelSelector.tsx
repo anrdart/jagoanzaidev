@@ -20,24 +20,26 @@ export default function LevelSelector() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="min-h-screen py-24 px-6">
+      {/* Spacer for mobile navbar */}
+      <div className="h-16 md:hidden" />
+      <div className="min-h-screen py-16 md:py-24 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-text-primary mb-3 md:mb-4">
             Pilih Level Kamu
           </h2>
-          <p className="text-xl text-text-secondary">
+          <p className="text-base md:text-xl text-text-secondary">
             Selesaikan level untuk unlock berikutnya
           </p>
         </motion.div>
 
         {/* Level Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {COURSE_LEVELS.map((level, index) => {
             const isUnlocked = unlockedLevels.includes(level);
             const score = quizScores[level];
@@ -49,8 +51,8 @@ export default function LevelSelector() {
               <motion.div
                 key={level}
                 className={`
-                  relative bg-white rounded-3xl shadow-soft p-8
-                  ${isUnlocked ? 'hover:shadow-lift hover:-translate-y-2 cursor-pointer' : ''}
+                  relative bg-white rounded-2xl md:rounded-3xl shadow-soft p-5 md:p-6 lg:p-8
+                  ${isUnlocked ? 'hover:shadow-lift hover:-translate-y-1 md:hover:-translate-y-2 cursor-pointer' : ''}
                   transition-all duration-200
                 `}
                 onClick={() => isUnlocked && setLevel(level)}
@@ -75,12 +77,12 @@ export default function LevelSelector() {
                   {/* Icon */}
                   <div
                     className={`
-                      w-20 h-20 mx-auto rounded-3xl flex items-center justify-center text-4xl mb-4
+                      w-14 h-14 md:w-20 md:h-20 mx-auto rounded-2xl md:rounded-3xl flex items-center justify-center text-2xl md:text-4xl mb-3 md:mb-4
                       ${isUnlocked ? 'bg-pastel-sage/30' : 'bg-gray-100'}
                     `}
                   >
                     {isCompleted ? (
-                      <CheckCircle2 className="w-10 h-10 text-accent-sage" />
+                      <CheckCircle2 className="w-7 h-7 md:w-10 md:h-10 text-accent-sage" />
                     ) : (
                       info.emoji
                     )}
@@ -88,7 +90,7 @@ export default function LevelSelector() {
 
                   {/* Title */}
                   <h3
-                    className={`text-2xl font-heading font-bold mb-2 ${
+                    className={`text-lg md:text-xl lg:text-2xl font-heading font-bold mb-2 ${
                       isUnlocked ? 'text-text-primary' : 'text-text-muted'
                     }`}
                   >
@@ -96,34 +98,35 @@ export default function LevelSelector() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-text-secondary text-sm mb-4">
+                  <p className="text-text-secondary text-xs md:text-sm mb-3 md:mb-4 line-clamp-2">
                     {module.description}
                   </p>
 
                   {/* Status */}
-                  <div className="flex items-center justify-center gap-2">
+                  <div className="flex items-center justify-center gap-1 md:gap-2">
                     {isUnlocked ? (
                       isCompleted ? (
-                        <span className="text-accent-sage font-semibold text-sm">
+                        <span className="text-accent-sage font-semibold text-xs md:text-sm">
                           ✅ Selesai ({score}%)
                         </span>
                       ) : (
-                        <span className="text-accent-blue font-semibold text-sm">
+                        <span className="text-accent-blue font-semibold text-xs md:text-sm">
                           Mulai →
                         </span>
                       )
                     ) : (
-                      <span className="text-text-muted font-semibold text-sm flex items-center gap-1">
-                        <LockIcon className="w-4 h-4" />
-                        Terkunci
+                      <span className="text-text-muted font-semibold text-xs md:text-sm flex items-center gap-1">
+                        <LockIcon className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden sm:inline">Terkunci</span>
+                        <span className="sm:hidden">🔒</span>
                       </span>
                     )}
                   </div>
 
                   {/* Card Count */}
                   {isUnlocked && (
-                    <p className="text-text-muted text-xs mt-4">
-                      {module.cards.length} kartu materi
+                    <p className="text-text-muted text-xs mt-3 md:mt-4">
+                      {module.cards.length} kartu
                     </p>
                   )}
                 </div>

@@ -60,20 +60,20 @@ export default function QuizCard({
       transition={{ duration: 0.2 }}
     >
       {/* Progress Bar */}
-      <div className="mb-8">
-        <div className="flex justify-between items-end mb-3">
-          <div>
-            <span className="text-sm text-text-muted">Soal</span>
-            <span className="text-xl font-bold text-text-primary ml-2">
+      <div className="mb-4 md:mb-8">
+        <div className="flex justify-between items-end mb-2 md:mb-3">
+          <div className="flex items-baseline gap-1">
+            <span className="text-xs md:text-sm text-text-muted">Soal</span>
+            <span className="text-lg md:text-xl font-bold text-text-primary">
               {currentQuestion + 1}
             </span>
-            <span className="text-text-muted text-lg"> / {questions.length}</span>
+            <span className="text-text-muted text-sm md:text-lg"> / {questions.length}</span>
           </div>
-          <div className="bg-pastel-sage px-4 py-1 rounded-full">
-            <span className="font-bold text-accent-sage">{Math.round(progress)}%</span>
+          <div className="bg-pastel-sage px-2 md:px-4 py-0.5 md:py-1 rounded-full">
+            <span className="font-bold text-accent-sage text-xs md:text-sm">{Math.round(progress)}%</span>
           </div>
         </div>
-        <div className="h-3 bg-pastel-slate rounded-full overflow-hidden">
+        <div className="h-2 md:h-3 bg-pastel-slate rounded-full overflow-hidden">
           <motion.div
             className="h-full bg-gradient-to-r from-accent-sage to-accent-blue rounded-full"
             initial={{ width: 0 }}
@@ -84,13 +84,13 @@ export default function QuizCard({
       </div>
 
       {/* Question Card */}
-      <div className="bg-white rounded-3xl shadow-lift p-6 md:p-8 mb-6">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 bg-accent-blue/10 rounded-xl flex items-center justify-center flex-shrink-0">
-            <span className="text-accent-blue font-bold text-lg">Q</span>
+      <div className="bg-white rounded-2xl md:rounded-3xl shadow-lift p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+        <div className="flex items-start gap-3 md:gap-4">
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-accent-blue/10 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+            <span className="text-accent-blue font-bold text-sm md:text-lg">Q</span>
           </div>
           <div className="flex-1">
-            <h3 className="text-lg md:text-xl font-heading font-bold text-text-primary leading-relaxed">
+            <h3 className="text-base md:text-lg lg:text-xl font-heading font-bold text-text-primary leading-relaxed">
               {question.question}
             </h3>
           </div>
@@ -98,7 +98,7 @@ export default function QuizCard({
       </div>
 
       {/* Options */}
-      <div className="space-y-3 mb-6">
+      <div className="space-y-2 md:space-y-3 mb-4 md:mb-6">
         <AnimatePresence mode="wait">
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
@@ -114,7 +114,7 @@ export default function QuizCard({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
                 className={`
-                  w-full p-4 rounded-2xl text-left font-medium transition-all duration-200 border-2 relative overflow-hidden
+                  w-full p-3 md:p-4 rounded-xl md:rounded-2xl text-left font-medium transition-all duration-200 border-2 relative overflow-hidden text-sm md:text-base
                   ${
                     showResult
                       ? isCorrect
@@ -132,10 +132,10 @@ export default function QuizCard({
                 whileHover={!showResult ? { scale: 1.01 } : {}}
                 whileTap={!showResult ? { scale: 0.99 } : {}}
               >
-                <div className="flex items-center gap-4 relative z-10">
+                <div className="flex items-center gap-2 md:gap-4 relative z-10">
                   {/* Option Letter */}
                   <div className={`
-                    w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 font-bold text-sm
+                    w-6 h-6 md:w-8 md:h-8 rounded-lg flex items-center justify-center flex-shrink-0 font-bold text-xs md:text-sm
                     ${
                       showResult
                         ? isCorrect
@@ -152,7 +152,7 @@ export default function QuizCard({
                   </div>
 
                   {/* Option Text */}
-                  <span className={`flex-1 ${
+                  <span className={`flex-1 text-left ${
                     showResult
                       ? isCorrect || isWrong
                         ? 'text-text-primary font-semibold'
@@ -170,12 +170,12 @@ export default function QuizCard({
                       className="flex-shrink-0"
                     >
                       {isCorrect ? (
-                        <div className="w-8 h-8 bg-accent-sage rounded-full flex items-center justify-center">
-                          <CheckCircle2 className="w-5 h-5 text-white" />
+                        <div className="w-6 h-6 md:w-8 md:h-8 bg-accent-sage rounded-full flex items-center justify-center">
+                          <CheckCircle2 className="w-3 h-3 md:w-5 md:h-5 text-white" />
                         </div>
                       ) : (
-                        <div className="w-8 h-8 bg-accent-coral rounded-full flex items-center justify-center">
-                          <XCircle className="w-5 h-5 text-white" />
+                        <div className="w-6 h-6 md:w-8 md:h-8 bg-accent-coral rounded-full flex items-center justify-center">
+                          <XCircle className="w-3 h-3 md:w-5 md:h-5 text-white" />
                         </div>
                       )}
                     </motion.div>
@@ -194,14 +194,14 @@ export default function QuizCard({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-6"
+            className="mb-4 md:mb-6"
           >
-            <div className="bg-gradient-to-r from-accent-blue/10 to-accent-sage/10 rounded-2xl p-5 border-2 border-accent-blue/20">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl flex-shrink-0">💡</span>
+            <div className="bg-gradient-to-r from-accent-blue/10 to-accent-sage/10 rounded-xl md:rounded-2xl p-3 md:p-5 border-2 border-accent-blue/20">
+              <div className="flex items-start gap-2 md:gap-3">
+                <span className="text-xl md:text-2xl flex-shrink-0">💡</span>
                 <div>
-                  <p className="font-bold text-accent-blue mb-1">Penjelasan:</p>
-                  <p className="text-text-secondary text-sm leading-relaxed">
+                  <p className="font-bold text-accent-blue mb-1 text-sm md:text-base">Penjelasan:</p>
+                  <p className="text-text-secondary text-xs md:text-sm leading-relaxed">
                     {question.explanation}
                   </p>
                 </div>
@@ -216,7 +216,7 @@ export default function QuizCard({
         {showResult && (
           <motion.button
             onClick={handleNext}
-            className="w-full py-4 bg-accent-sage text-white font-heading font-bold rounded-2xl shadow-soft hover:shadow-lift hover:-translate-y-1 hover:bg-accent-sage/90 transition-all duration-200"
+            className="w-full py-3 md:py-4 bg-accent-sage text-white font-heading font-bold rounded-xl md:rounded-2xl shadow-soft hover:shadow-lift hover:-translate-y-1 hover:bg-accent-sage/90 transition-all duration-200 text-sm md:text-base"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}

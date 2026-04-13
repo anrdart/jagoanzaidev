@@ -108,19 +108,21 @@ export default function CardDeck() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <div className="min-h-screen py-8 px-4">
+      {/* Spacer for mobile navbar */}
+      <div className="h-16 md:hidden" />
+      <div className="min-h-screen py-4 md:py-8 px-4">
         <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 md:mb-6">
+          <div className="flex items-center justify-between mb-3 md:mb-4">
             <button
               onClick={handleBackToLevels}
-              className="flex items-center gap-2 text-text-muted hover:text-accent-blue transition-colors"
+              className="flex items-center gap-1.5 md:gap-2 text-text-muted hover:text-accent-blue transition-colors text-sm md:text-base"
             >
-              <Home className="w-5 h-5" />
-              <span className="font-medium">Level</span>
+              <Home className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-medium hidden sm:inline">Level</span>
             </button>
-            <span className="text-text-muted font-medium">
+            <span className="text-text-muted font-medium text-sm md:text-base truncate max-w-[150px] sm:max-w-none">
               {module.title}
             </span>
           </div>
@@ -132,7 +134,7 @@ export default function CardDeck() {
         </div>
 
         {/* Card Stack */}
-        <div className="relative min-h-[500px]">
+        <div className="relative min-h-[400px] md:min-h-[500px]">
           <AnimatePresence mode="wait">
             {!showQuiz && !showResult && (
               <ContentCard
@@ -157,12 +159,12 @@ export default function CardDeck() {
 
         {/* Navigation */}
         {!showQuiz && !showResult && (
-          <div className="flex items-center justify-between mt-6">
+          <div className="flex items-center justify-between gap-2 md:gap-4 mt-4 md:mt-6">
             <button
               onClick={handlePrevious}
               disabled={currentCardIndex === 0}
               className={`
-                flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all
+                flex items-center gap-1.5 md:gap-2 px-3 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl font-medium transition-all text-sm md:text-base
                 ${
                   currentCardIndex === 0
                     ? 'bg-pastel-slate text-text-muted cursor-not-allowed'
@@ -170,14 +172,15 @@ export default function CardDeck() {
                 }
               `}
             >
-              <ArrowLeft className="w-5 h-5" />
-              Sebelumnya
+              <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="hidden sm:inline">Sebelumnya</span>
+              <span className="sm:hidden">Prev</span>
             </button>
 
             <button
               onClick={handleNext}
               className={`
-                flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all
+                flex items-center gap-1.5 md:gap-2 px-3 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl font-medium transition-all text-sm md:text-base flex-1 max-w-[200px] md:max-w-none
                 ${
                   isLastCard
                     ? 'bg-accent-sage text-white shadow-soft hover:shadow-lift hover:-translate-y-1'
@@ -185,8 +188,18 @@ export default function CardDeck() {
                 }
               `}
             >
-              {isLastCard ? 'Kerjakan Quiz →' : 'Lanjut →'}
-              <ArrowRight className="w-5 h-5" />
+              {isLastCard ? (
+                <>
+                  <span className="hidden sm:inline">Kerjakan Quiz</span>
+                  <span className="sm:hidden">Quiz</span>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                </>
+              ) : (
+                <>
+                  Lanjut
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                </>
+              )}
             </button>
           </div>
         )}
@@ -208,13 +221,14 @@ export default function CardDeck() {
         {/* Swipe Hint */}
         {!showQuiz && !showResult && (
           <motion.div
-            className="text-center mt-4 text-text-muted text-sm"
+            className="text-center mt-3 md:mt-4 text-text-muted text-xs md:text-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <span className="inline-flex items-center gap-2">
-              ◀ Swipe untuk navigasi ▶
+            <span className="inline-flex items-center gap-1 md:gap-2">
+              <span className="hidden md:inline">◀ Swipe untuk navigasi ▶</span>
+              <span className="md:hidden">Gunakan tombol navigasi</span>
             </span>
           </motion.div>
         )}
