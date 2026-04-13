@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useCourseStore } from '../store/useCourseStore';
-import { authClient } from '../lib/auth-client';
+import { getSession } from '../lib/auth-client';
 import Hero from './Hero';
 import Introduction from './Introduction';
 import GoldenRules from './GoldenRules';
@@ -13,7 +13,7 @@ export default function HomeRouter() {
 
   useEffect(() => {
     setMounted(true);
-    authClient.getSession().then((result) => {
+    getSession().then((result) => {
       const user = result.data?.user;
       if (user) {
         login(user.id, user.email);

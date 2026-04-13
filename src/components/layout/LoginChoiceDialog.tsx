@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useCallback } from 'react';
 import { useCourseStore } from '../../store/useCourseStore';
-import { authClient } from '../../lib/auth-client';
+import { authClient, emailOtp, getSession } from '../../lib/auth-client';
 import { Rocket, Lock, ArrowRight, Mail, Loader2, X, Eye, EyeOff } from 'lucide-react';
 
 type LoginStep = 'choice' | 'email-form' | 'verify-email' | 'loading';
@@ -93,7 +93,7 @@ export default function LoginChoiceDialog() {
 
   const sendOtp = async () => {
     try {
-      await authClient.emailOtp.sendVerificationOtp({
+      await emailOtp.sendVerificationOtp({
         email,
         type: 'email-verification',
       });
@@ -146,7 +146,7 @@ export default function LoginChoiceDialog() {
           password,
         });
 
-        const result = await authClient.getSession();
+        const result = await getSession();
         const user = result.data?.user;
         if (user) {
           login(user.id, user.email);
@@ -188,12 +188,12 @@ export default function LoginChoiceDialog() {
     setError('');
 
     try {
-      await authClient.emailOtp.verifyEmail({
+      await emailOtp.verifyEmail({
         email,
         otp,
       });
 
-      const result = await authClient.getSession();
+      const result = await getSession();
       const user = result.data?.user;
       if (user) {
         login(user.id, user.email);
