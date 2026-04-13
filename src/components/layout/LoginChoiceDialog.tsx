@@ -155,8 +155,24 @@ export default function LoginChoiceDialog() {
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Gagal. Coba lagi nanti ya!';
-      setError(message);
-      setStep('email-form');
+
+      if (
+        message.toLowerCase().includes('email not verified') ||
+        message.toLowerCase().includes('verify your email') ||
+        message.toLowerCase().includes('email verification') ||
+        message.toLowerCase().includes('user already') ||
+        message.toLowerCase().includes('already registered')
+      ) {
+        setError('');
+        try {
+          await sendOtp();
+          startResendCooldown();
+        } catch {}
+        setStep('verify-email');
+      } else {
+        setError(message);
+        setStep('email-form');
+      }
     }
   };
 
@@ -501,6 +517,11 @@ export default function LoginChoiceDialog() {
                   Kami sudah kirim kode 6 digit ke
                 </p>
                 <p className="text-text-primary font-semibold text-sm mt-1">{email}</p>
+                <p className="text-text-muted text-xs mt-2">
+                  {authMode === 'signup'
+                    ? 'Masukkan kode untuk menyelesaikan pendaftaran akun'
+                    : 'Email sudah terdaftar, verifikasi untuk melanjutkan'}
+                </p>
               </div>
 
               <form onSubmit={handleVerifyOtp} className="space-y-4">
