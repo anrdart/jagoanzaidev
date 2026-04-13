@@ -1,9 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CuratedMode from '../../components/curated/CuratedMode';
+import ModeNav from '../../components/layout/ModeNav';
 
 ---
 
 <Layout title="Curated Modules - Jagoan Zaidev">
-  <CuratedMode client:load />
+  <main class="pt-16">
+    <ModeNav client:load />
+    <CuratedMode client:load />
+  </main>
 </Layout>

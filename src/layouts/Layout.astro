@@ -4,9 +4,11 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = 'Tempat paling asik dan gampang dipahami buat belajar server dari nol.' } = Astro.props;
+const { title, description = 'Tempat paling asik dan gampang dipahami buat belajar server dari nol.', ogImage = '/og-image.png' } = Astro.props;
+const siteTitle = `${title} | Jagoan Zaidev`;
 ---
 
 <!doctype html>
@@ -16,7 +18,16 @@ const { title, description = 'Tempat paling asik dan gampang dipahami buat belaj
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <title>{siteTitle}</title>
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="id_ID" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <slot />

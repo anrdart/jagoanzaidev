@@ -1,9 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import StoryMode from '../../components/story/StoryMode';
+import ModeNav from '../../components/layout/ModeNav';
 
 ---
 
 <Layout title="Story Mode - Jagoan Zaidev">
-  <StoryMode client:load />
+  <main class="pt-16">
+    <ModeNav client:load />
+    <StoryMode client:load />
+  </main>
 </Layout>

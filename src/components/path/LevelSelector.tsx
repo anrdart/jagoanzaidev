@@ -2,10 +2,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePathStore } from '../../stores/pathStore';
 import { courseData, COURSE_LEVELS, type CourseLevel } from '../../content/course-data';
 import LockBadge from '../ui/LockBadge';
-import { CheckCircle2, Lock as LockIcon, X } from 'lucide-react';
+import { CheckCircle2, Lock as LockIcon } from 'lucide-react';
 
 export default function LevelSelector() {
-  const { currentLevel, unlockedLevels, quizScores, setLevel, setShowCourse } = usePathStore();
+  const { unlockedLevels, quizScores, setLevel } = usePathStore();
 
   const levelInfo: Record<CourseLevel, { emoji: string; color: string }> = {
     basic: { emoji: '⭐', color: 'accent-blue' },
@@ -13,25 +13,13 @@ export default function LevelSelector() {
     jagoan: { emoji: '👑', color: 'accent-coral' },
   };
 
-  const handleGoHome = () => {
-    setShowCourse(false);
-  };
-
   return (
     <motion.div
-      className="fixed inset-0 bg-pastel-cream z-40 overflow-y-auto"
+      className="min-h-screen bg-pastel-cream overflow-y-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Close Button */}
-      <button
-        onClick={handleGoHome}
-        className="fixed top-6 right-6 z-50 w-12 h-12 bg-white rounded-full shadow-soft flex items-center justify-center hover:shadow-lift hover:-translate-y-1 transition-all"
-      >
-        <X className="w-6 h-6 text-text-secondary" />
-      </button>
-
       <div className="min-h-screen py-24 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
@@ -151,12 +139,12 @@ export default function LevelSelector() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <button
-            onClick={handleGoHome}
+          <a
+            href="/"
             className="text-text-muted hover:text-accent-blue font-medium transition-colors"
           >
             ← Kembali ke Beranda
-          </button>
+          </a>
         </motion.div>
       </div>
       </div>

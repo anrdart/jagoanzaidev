@@ -1,15 +1,19 @@
 import { usePathStore } from '../../stores/pathStore';
 import LevelSelector from './LevelSelector';
 import CardDeck from './CardDeck';
+import ModeNav from '../layout/ModeNav';
 import { AnimatePresence } from 'framer-motion';
 
 export default function PathApp() {
-  const { showCourse, currentLevel } = usePathStore();
+  const { currentLevel } = usePathStore();
 
   return (
-    <AnimatePresence>
-      {showCourse && !currentLevel && <LevelSelector />}
-      {showCourse && currentLevel && <CardDeck />}
-    </AnimatePresence>
+    <>
+      <ModeNav currentMode="path" />
+      <AnimatePresence>
+        {!currentLevel && <LevelSelector />}
+        {currentLevel && <CardDeck />}
+      </AnimatePresence>
+    </>
   );
 }

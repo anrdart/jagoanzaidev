@@ -5,19 +5,24 @@ import { modeDescriptions, type LearningMode } from '../../content/course-data';
 import { X } from 'lucide-react';
 
 export default function ModeSelection() {
-  const { setMode, setShowModeSelection } = useCourseStore();
+  const { showModeSelection, setMode, setShowModeSelection, isLoggedIn } = useCourseStore();
+
+  if (!showModeSelection) return null;
 
   const handleSelectMode = (mode: LearningMode) => {
     setMode(mode);
     setShowModeSelection(false);
 
-    // Navigate to the appropriate route
-    if (mode === 'path') {
-      window.location.href = '/path';
-    } else if (mode === 'curated') {
-      window.location.href = '/curated';
-    } else if (mode === 'story') {
-      window.location.href = '/story';
+    const routeMap: Record<LearningMode, string> = {
+      path: '/path',
+      curated: '/curated',
+      story: '/story',
+    };
+
+    if (!isLoggedIn) {
+      window.dispatchEvent(new CustomEvent('open-login', { detail: { fromCourse: true, targetRoute: routeMap[mode] } }));
+    } else {
+      window.location.href = routeMap[mode];
     }
   };
 

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import StarRating from '../ui/StarRating';
+import Confetti from '../ui/Confetti';
 import { Trophy, XCircle, RotateCcw } from 'lucide-react';
 import BlobButton from '../ui/BlobButton';
 
@@ -28,7 +29,9 @@ export default function QuizResult({
   const stars = (score / 100) * 5;
 
   return (
-    <motion.div
+    <>
+      <Confetti active={passed} />
+      <motion.div
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -162,5 +165,6 @@ export default function QuizResult({
         </AnimatePresence>
       </motion.div>
     </motion.div>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { usePathStore } from '../../stores/pathStore';
-import { courseData, COURSE_LEVELS, type CourseLevel } from '../../content/course-data';
+import { courseData, COURSE_LEVELS } from '../../content/course-data';
 import ContentCard from './ContentCard';
 import QuizCard from './QuizCard';
 import QuizResult from '../layout/QuizResult';
@@ -16,10 +16,8 @@ export default function CardDeck() {
     previousCard,
     saveQuizScore,
     unlockLevel,
-    quizScores,
     quizAttempts,
     incrementQuizAttempt,
-    setShowCourse,
     markCardCompleted,
     setCurrentCardIndex,
     setLevel,
@@ -99,13 +97,8 @@ export default function CardDeck() {
   const handleBackToLevels = () => {
     setShowResult(false);
     setShowQuiz(false);
-    setShowCourse(false);
     setCurrentCardIndex(0);
-  };
-
-  const handleGoHome = () => {
-    setShowCourse(false);
-    setCurrentCardIndex(0);
+    usePathStore.setState({ currentLevel: null });
   };
 
   return (
@@ -121,11 +114,11 @@ export default function CardDeck() {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
             <button
-              onClick={handleGoHome}
+              onClick={handleBackToLevels}
               className="flex items-center gap-2 text-text-muted hover:text-accent-blue transition-colors"
             >
               <Home className="w-5 h-5" />
-              <span className="font-medium">Beranda</span>
+              <span className="font-medium">Level</span>
             </button>
             <span className="text-text-muted font-medium">
               {module.title}
@@ -155,7 +148,6 @@ export default function CardDeck() {
                 <QuizCard
                   key="quiz"
                   questions={module.quiz}
-                  level={currentLevel}
                   onComplete={handleQuizComplete}
                 />
               </div>

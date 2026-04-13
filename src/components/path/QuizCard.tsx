@@ -6,13 +6,11 @@ import { CheckCircle2, XCircle } from 'lucide-react';
 interface QuizCardProps {
   questions: QuizQuestion[];
   onComplete: (score: number) => void;
-  level: string;
 }
 
 export default function QuizCard({
   questions,
   onComplete,
-  level,
 }: QuizCardProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);

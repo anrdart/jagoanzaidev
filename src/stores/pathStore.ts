@@ -1,7 +1,8 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import type { CourseLevel } from '../content/course-data';
 import { courseData, COURSE_LEVELS } from '../content/course-data';
+import { createUserStorage } from '../lib/user-storage';
 
 interface PathState {
   // Navigation
@@ -120,7 +121,8 @@ export const usePathStore = create<PathState>()(
       setShowCourse: (show) => set({ showCourse: show }),
     }),
     {
-      name: 'jagoan-zaidev-path',
+      name: 'path',
+      storage: createJSONStorage(() => createUserStorage('path')),
       partialize: (state) => ({
         currentLevel: state.currentLevel,
         currentCardIndex: state.currentCardIndex,

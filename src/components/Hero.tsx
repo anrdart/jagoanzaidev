@@ -1,15 +1,37 @@
-import { Rocket, Sparkles } from 'lucide-react';
-import { usePathStore } from '../stores/pathStore';
+import { Rocket, Sparkles, LogIn, User } from 'lucide-react';
+import { useCourseStore } from '../store/useCourseStore';
 
 export default function Hero() {
-  const { setShowCourse } = usePathStore();
+  const { setShowModeSelection, isLoggedIn, userEmail } = useCourseStore();
 
   const handleStartLearning = () => {
-    setShowCourse(true);
+    setShowModeSelection(true);
+  };
+
+  const openLogin = () => {
+    sessionStorage.removeItem('login-dismissed');
+    window.dispatchEvent(new CustomEvent('open-login'));
   };
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-pastel-slate relative overflow-hidden">
+      <div className="fixed top-4 right-4 z-20">
+        {isLoggedIn ? (
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-soft">
+            <User className="w-4 h-4 text-accent-sage" />
+            <span className="text-sm font-medium text-text-primary truncate max-w-[140px]">{userEmail}</span>
+          </div>
+        ) : (
+          <button
+            onClick={openLogin}
+            className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-soft hover:shadow-lift hover:-translate-y-0.5 transition-all text-text-secondary hover:text-accent-blue"
+          >
+            <LogIn className="w-4 h-4" />
+            <span className="text-sm font-medium">Masuk</span>
+          </button>
+        )}
+      </div>
+
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-pastel-mint rounded-full opacity-60 blur-2xl animate-float"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-pastel-coral rounded-full opacity-50 blur-3xl animate-float-delayed"></div>

@@ -1,20 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero';
-import Introduction from '../components/Introduction';
-import GoldenRules from '../components/GoldenRules';
-import Footer from '../components/Footer';
 import ModeSelection from '../components/layout/ModeSelection';
 import LoginChoiceDialog from '../components/layout/LoginChoiceDialog';
+import HomeRouter from '../components/HomeRouter';
 
 ---
 
 <Layout title="Jagoan Zaidev - Belajar Server dari Nol">
   <main>
-    <Hero client:load />
-    <Introduction />
-    <GoldenRules />
-    <Footer />
+    <HomeRouter client:load />
     <ModeSelection client:load />
     <LoginChoiceDialog client:load />
   </main>

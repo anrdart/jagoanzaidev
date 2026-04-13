@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import type { Topic, TopicCategory } from '../content/curated-data';
+import { createUserStorage } from '../lib/user-storage';
 
 interface CuratedState {
   // Navigation
@@ -63,7 +64,8 @@ export const useCuratedStore = create<CuratedState>()(
       }),
     }),
     {
-      name: 'jagoan-zaidev-curated',
+      name: 'curated',
+      storage: createJSONStorage(() => createUserStorage('curated')),
       partialize: (state) => ({
         completedTopics: state.completedTopics,
         favoriteTopics: state.favoriteTopics,
